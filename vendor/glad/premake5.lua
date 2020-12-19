@@ -1,10 +1,10 @@
-project "Glad"
+project "glad"
     kind "StaticLib"
     language "C"
     staticruntime "on"
-    
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
 
     files
     {
@@ -17,14 +17,21 @@ project "Glad"
     {
         "include"
     }
-    
-    filter "system:windows"
-        systemversion "latest"
 
-    filter "configurations:Debug"
-        runtime "Debug"
-        symbols "on"
+-- Push functions to workspace
 
-    filter "configurations:Release"
-        runtime "Release"
-        optimize "on"
+glad_inc = path.getabsolute( "include" )
+
+project "*"
+
+function includeGlad()
+    includedirs ( glad_inc )
+end
+
+function linkGlad()
+    libdirs ("../../bin-lib/" .. outputdir .. "/%{prj.name}")
+
+    filter "kind:not StaticLib"
+        links "glad"
+    filter {}
+end

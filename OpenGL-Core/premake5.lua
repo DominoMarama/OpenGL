@@ -1,64 +1,53 @@
 project "OpenGL-Core"
-	kind "StaticLib"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
+    kind "StaticLib"
+    cppdialect "C++17"
+    staticruntime "on"
 
-	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "glpch.h"
-	pchsource "src/glpch.cpp"
+    pchheader "glpch.h"
+    pchsource "src/glpch.cpp"
 
-	files
-	{
-		"src/**.h",
-		"src/**.cpp",
-		"vendor/stb_image/**.h",
-		"vendor/stb_image/**.cpp",
-		"vendor/glm/glm/**.hpp",
-		"vendor/glm/glm/**.inl",
-	}
+    files
+    {
+        "src/**.h",
+        "src/**.cpp",
+        "stb_image/**.h",
+        "stb_image/**.cpp",
+        "glm/glm/**.hpp",
+        "glm/glm/**.inl",
+    }
 
-	defines
-	{
-		"_CRT_SECURE_NO_WARNINGS"
-	}
+    defines
+    {
+        "GLFW_INCLUDE_NONE"
+    }
 
-	includedirs
-	{
-		"src",
-		"vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
-	}
+    includedirs
+    {
+        "src"
+    }
 
-	links 
-	{ 
-		"GLFW",
-		"Glad",
-		"ImGui",
-		"opengl32.lib"
-	}
+    includeGlad()
+    includeImGui()
 
-	filter "system:windows"
-		systemversion "latest"
+-- Push functions to workspace
 
-		defines
-		{
-			"GLCORE_PLATFORM_WINDOWS",
-			"GLFW_INCLUDE_NONE"
-		}
+core_inc = path.getabsolute( "src" )
 
-	filter "configurations:Debug"
-		defines "GLCORE_DEBUG"
-		runtime "Debug"
-		symbols "on"
+project "*"
 
-	filter "configurations:Release"
-		defines "GLCORE_RELEASE"
-		runtime "Release"
-		optimize "on"
+function includeCore()
+    includedirs ( core_inc )
+    includeGlad()
+    includeImGui()
+end
+
+function linkCore()
+    libdirs ("../bin/" .. outputdir .. "/%{prj.name}")
+
+    filter "kind:not StaticLib"
+        links { "OpenGL-Core", "imgui", "glad" }
+    filter {}
+end

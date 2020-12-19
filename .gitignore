@@ -6,6 +6,7 @@ bin-int/
 # Files
 *.user
 *imgui.ini
+Makefile
 
 # Visual Studio
 .vs/

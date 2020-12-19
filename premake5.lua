@@ -1,72 +1,44 @@
--- OpenGL-Sandbox
-workspace "OpenGL-Sandbox"
-	architecture "x64"
-	startproject "OpenGL-Sandbox"
+-- Workspace
 
-	configurations
-	{
-		"Debug",
-		"Release"
-	}
-	
-	flags
-	{
-		"MultiProcessorCompile"
-	}
-
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
--- Include directories relative to OpenGL-Core
-IncludeDir = {}
-IncludeDir["GLFW"] = "vendor/GLFW/include"
-IncludeDir["Glad"] = "vendor/Glad/include"
-IncludeDir["ImGui"] = "vendor/imgui"
-IncludeDir["glm"] = "vendor/glm"
-IncludeDir["stb_image"] = "vendor/stb_image"
-
--- Projects
-group "Dependencies"
-	include "OpenGL-Core/vendor/GLFW"
-	include "OpenGL-Core/vendor/Glad"
-	include "OpenGL-Core/vendor/imgui"
-group ""
-
-include "OpenGL-Core"
-include "OpenGL-Sandbox"
-
--- OpenGL-Examples
-workspace "OpenGL-Examples"
-    startproject "OpenGL-Examples"
+workspace "OpenGL"
+    language "C++"
     architecture "x64"
-    startproject "OpenGL-Examples"
 
-    configurations
-    {
-        "Debug",
-        "Release"
-    }
+-- Configurations
 
-    flags
-    {
-        "MultiProcessorCompile"
-    }
+configurations
+{
+    "Debug",
+    "Release"
+}
+
+flags
+{
+    "MultiProcessorCompile"
+}
+
+-- Directories
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
--- Include directories relative to OpenGL-Core
-IncludeDir = {}
-IncludeDir["GLFW"] = "vendor/GLFW/include"
-IncludeDir["Glad"] = "vendor/Glad/include"
-IncludeDir["ImGui"] = "vendor/imgui"
-IncludeDir["glm"] = "vendor/glm"
-IncludeDir["stb_image"] = "vendor/stb_image"
+includedirs
+{
+    "vendor/spdlog/include",
+    "vendor/glm",
+    "vendor/stb_image"
+}
+
+-- Libraries
+
+include "vendor/glad"
+include "vendor/imgui"
+include "OpenGL-Core"
+-- TODO: Add optional glfw for Windows
 
 -- Projects
-group "Dependencies"
-    includeexternal "OpenGL-Core/vendor/GLFW"
-    includeexternal "OpenGL-Core/vendor/Glad"
-    includeexternal "OpenGL-Core/vendor/imgui"
-group ""
 
-includeexternal "OpenGL-Core"
 include "OpenGL-Examples"
+dofile "premake5-filters.lua"
+
+include "OpenGL-Sandbox"
+dofile "premake5-filters.lua"

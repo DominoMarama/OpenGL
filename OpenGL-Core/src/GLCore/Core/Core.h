@@ -3,6 +3,11 @@
 
 #include <memory>
 
+#if defined GLCORE_PLATFORM_LINUX
+	#include <signal.h>
+	#define __debugbreak() raise(SIGTRAP)
+#endif
+
 #ifdef GLCORE_DEBUG
 	#define GLCORE_ENABLE_ASSERTS
 #endif

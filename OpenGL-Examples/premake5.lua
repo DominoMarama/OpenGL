@@ -1,47 +1,38 @@
 project "OpenGL-Examples"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
+    kind "ConsoleApp"
+    cppdialect "C++17"
+    staticruntime "on"
 
-	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
+    targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
-		"src/**.h",
-		"src/**.cpp"
-	}
+    files
+    {
+        "src/**.h",
+        "src/**.cpp"
+    }
 
-	includedirs
-	{
-		"../OpenGL-Core/vendor/spdlog/include",
-		"../OpenGL-Core/src",
-		"../OpenGL-Core/vendor",
-		"../OpenGL-Core/%{IncludeDir.glm}",
-		"../OpenGL-Core/%{IncludeDir.Glad}",
-		"../OpenGL-Core/%{IncludeDir.ImGui}"
-	}
+    includeCore()
+    includeGlad()
+    includeImGui()
 
-	links
-	{
-		"OpenGL-Core"
-	}
+    linkCore()
+    linkGlad()
+    linkImGui()
 
-	filter "system:windows"
-		systemversion "latest"
+assets_target_dir = path.getabsolute( "../bin/" .. outputdir .. "/%{prj.name}/" )
+assets_dir = path.getabsolute( "assets" )
 
-		defines
-		{
-			"GLCORE_PLATFORM_WINDOWS"
-		}
+postbuildcommands
+{
+    "{rmdir} " .. assets_target_dir .. "/assets",
+    "{copy} " .. assets_dir .. " " .. assets_target_dir
+    -- TODO: remove rmdir & change to {copydir} when available
+}
 
-	filter "configurations:Debug"
-		defines "GLCORE_DEBUG"
-		runtime "Debug"
-		symbols "on"
+cleancommands
+{
+    "{rmdir} " .. assets_target_dir .. "/assets",
+    "{delete} " .. assets_target_dir .. "/imgui.ini"
+}
 
-	filter "configurations:Release"
-		defines "GLCORE_RELEASE"
-		runtime "Release"
-        optimize "on"
