@@ -31,7 +31,7 @@ includedirs
 -- Libraries
 
 include "vendor/glad"
-include "vendor/imgui"
+include "vendor/premake5-imgui.lua"
 include "OpenGL-Core"
 -- TODO: Add optional glfw for Windows
 
