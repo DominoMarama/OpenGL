@@ -3,6 +3,7 @@ glfw_lib = os.findlib("glfw")
 if glfw_lib then
 
 glfw_inc = os.findheader( "glfw3.h" )
+glfw_link = "glfw"
 
 else
 
@@ -50,6 +51,8 @@ project "glfw"
 			"_GLFW_X11"
 		}
 
+		glfw_link = { "glfw", "pthread" }
+
 	filter "system:windows"
 		systemversion "latest"
 		staticruntime "On"
@@ -72,6 +75,8 @@ project "glfw"
 			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"
 		}
+
+		glfw_link = "glfw"
 
 	filter "configurations:Debug"
 		runtime "Debug"
@@ -98,6 +103,6 @@ function linkGLFW()
 	libdirs ( glfw_lib )
 
 	filter "kind:not StaticLib"
-		links "glfw"
+		links ( glfw_link )
 	filter {}
 end
