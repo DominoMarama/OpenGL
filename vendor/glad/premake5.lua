@@ -1,22 +1,22 @@
 project "glad"
-    kind "StaticLib"
-    language "C"
-    staticruntime "on"
+	kind "StaticLib"
+	language "C"
+	staticruntime "on"
 
-    targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
 
-    files
-    {
-        "include/glad/glad.h",
-        "include/KHR/khrplatform.h",
-        "src/glad.c"
-    }
+	files
+	{
+		"include/glad/glad.h",
+		"include/KHR/khrplatform.h",
+		"src/glad.c"
+	}
 
-    includedirs
-    {
-        "include"
-    }
+	includedirs
+	{
+		"include"
+	}
 
 -- Push functions to workspace
 
@@ -25,13 +25,11 @@ glad_inc = path.getabsolute( "include" )
 project "*"
 
 function includeGlad()
-    includedirs ( glad_inc )
+	includedirs ( glad_inc )
 end
 
 function linkGlad()
-    libdirs ("../../bin-lib/" .. outputdir .. "/%{prj.name}")
-
-    filter "kind:not StaticLib"
-        links "glad"
-    filter {}
+	filter "kind:not StaticLib"
+		links "glad"
+	filter {}
 end
