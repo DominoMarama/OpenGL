@@ -3,6 +3,7 @@
 workspace "OpenGL"
 	language "C++"
 	architecture "x64"
+	startproject "OpenGL-Sandbox"
 
 -- Configurations
 
@@ -30,15 +31,18 @@ includedirs
 
 -- Libraries
 
-include "vendor/premake5-glfw.lua"
-include "vendor/glad"
-include "vendor/premake5-imgui.lua"
-include "OpenGL-Core"
+group "Dependencies"
+	includeexternal "vendor/premake5-glfw.lua"
+	includeexternal "vendor/glad"
+	includeexternal "vendor/premake5-imgui.lua"
+group ""
+
+includeexternal "OpenGL-Core"
 
 -- Projects
 
-include "OpenGL-Examples"
+include "OpenGL-Sandbox"
 dofile "premake5-filters.lua"
 
-include "OpenGL-Sandbox"
+include "OpenGL-Examples"
 dofile "premake5-filters.lua"
