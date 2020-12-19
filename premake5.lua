@@ -1,20 +1,20 @@
 -- Workspace
 
 workspace "OpenGL"
-    language "C++"
-    architecture "x64"
+	language "C++"
+	architecture "x64"
 
 -- Configurations
 
 configurations
 {
-    "Debug",
-    "Release"
+	"Debug",
+	"Release"
 }
 
 flags
 {
-    "MultiProcessorCompile"
+	"MultiProcessorCompile"
 }
 
 -- Directories
@@ -23,17 +23,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 includedirs
 {
-    "vendor/spdlog/include",
-    "vendor/glm",
-    "vendor/stb_image"
+	"vendor/spdlog/include",
+	"vendor/glm",
+	"vendor/stb_image"
 }
 
 -- Libraries
 
+include "vendor/premake5-glfw.lua"
 include "vendor/glad"
 include "vendor/premake5-imgui.lua"
 include "OpenGL-Core"
--- TODO: Add optional glfw for Windows
 
 -- Projects
 

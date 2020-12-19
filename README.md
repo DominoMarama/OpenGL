@@ -3,7 +3,7 @@ Work-in-progress OpenGL library that aims to provide a powerful sandbox for you 
 
 ## Usage
 
-Currently only "officially" supports Linux - Mac and Windows support is coming soon.
+OpenGL-Core uses premake5 to configure the build and IDE environment. Platform specific scripts are included to simplify the setup process.
 ### Clone Repository
 ```
 git clone --recursive https://github.com/TheCherno/OpenGL
@@ -21,6 +21,10 @@ Run `./scripts/Linux-Premake.sh` to generate the make files.
 
 Then `make` to build all targets in debug mode.
 
-Use `make help` to see the various build options available.
+Use `make help` to see the various build options available. For example:
 
+`make config=release OpenGL-Sandbox` would build a release version of the sandbox project.
 
+### Mac Setup
+
+Mac is not currently supported.
