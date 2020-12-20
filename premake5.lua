@@ -32,12 +32,12 @@ includedirs
 -- Libraries
 
 group "Dependencies"
-	includeexternal "vendor/premake5-glfw.lua"
-	includeexternal "vendor/glad"
-	includeexternal "vendor/premake5-imgui.lua"
+	include "vendor/premake5-glfw.lua"
+	include "vendor/glad"
+	include "vendor/premake5-imgui.lua"
 group ""
 
-includeexternal "OpenGL-Core"
+include "OpenGL-Core"
 
 -- Projects
 
