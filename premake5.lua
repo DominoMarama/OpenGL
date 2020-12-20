@@ -1,9 +1,12 @@
+--require "vendor/premake-qmake/qmake"
+
 -- Workspace
 
 workspace "OpenGL"
 	language "C++"
 	architecture "x64"
 	startproject "OpenGL-Sandbox"
+	location "build"
 
 -- Configurations
 
@@ -19,8 +22,6 @@ flags
 }
 
 -- Directories
-
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 includedirs
 {
@@ -42,7 +43,7 @@ include "OpenGL-Core"
 -- Projects
 
 include "OpenGL-Sandbox"
-dofile "premake5-filters.lua"
+--dofile "premake5-filters.lua"
 
 include "OpenGL-Examples"
-dofile "premake5-filters.lua"
+--dofile "premake5-filters.lua"

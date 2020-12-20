@@ -11,9 +11,6 @@ project "glfw"
 	kind "StaticLib"
 	language "C"
 
-	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
-
 	files
 	{
 		"glfw/include/GLFW/glfw3.h",
@@ -87,7 +84,7 @@ project "glfw"
 		optimize "on"
 
 glfw_inc = path.getabsolute( "glfw/include" )
-glfw_lib = "../bin/" .. outputdir .. "/%{prj.name}"
+glfw_lib = "../bin/lib"
 
 project "*"
 

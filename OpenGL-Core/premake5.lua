@@ -3,9 +3,6 @@ project "OpenGL-Core"
 	cppdialect "C++17"
 	staticruntime "on"
 
-	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
-
 	pchheader "glpch.h"
 	pchsource "src/glpch.cpp"
 
@@ -47,8 +44,6 @@ function includeCore()
 end
 
 function linkCore()
-	libdirs ("../bin/" .. outputdir .. "/%{prj.name}")
-
 	filter "kind:not StaticLib"
 		links { "OpenGL-Core" }
 		linkGLFW()

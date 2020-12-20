@@ -3,9 +3,6 @@ project "glad"
 	language "C"
 	staticruntime "on"
 
-	targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../../bin-int/" .. outputdir .. "/%{prj.name}")
-
 	files
 	{
 		"include/glad/glad.h",
@@ -17,6 +14,9 @@ project "glad"
 	{
 		"include"
 	}
+
+	filter "system:linux"
+		links "dl"
 
 -- Push functions to workspace
 

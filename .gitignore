@@ -1,7 +1,6 @@
 # Directories
-bin/
 !/vendor/bin
-bin-int/
+build/
 
 # Files
 *.user
@@ -9,6 +8,10 @@ bin-int/
 Makefile
 *.make
 *.backup
+
+# qmake
+*.pro
+*.pro.user
 
 # Visual Studio
 .vs/

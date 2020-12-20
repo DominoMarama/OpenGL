@@ -1,3 +1,5 @@
+function systemFilter()
+
 -- Platform Filter Windows
 
 filter "system:windows"
@@ -51,3 +53,7 @@ filter "configurations:Release"
 	defines "GLCORE_RELEASE"
 	runtime "Release"
 	optimize "on"
+
+filter {}
+
+end
