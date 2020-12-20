@@ -20,12 +20,12 @@ project "imgui"
 
 -- Push functions to workspace
 
-imgui_inc = path.getabsolute( "imgui" )
+local inc_dirs = path.getabsolute( "imgui" )
 
 project "*"
 
 function includeImGui()
-	includedirs ( imgui_inc )
+	includedirs ( inc_dirs )
 end
 
 function linkImGui()

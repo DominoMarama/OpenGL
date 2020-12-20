@@ -20,12 +20,12 @@ project "glad"
 
 -- Push functions to workspace
 
-glad_inc = path.getabsolute( "include" )
+local inc_dirs = path.getabsolute( "include" )
 
 project "*"
 
 function includeGlad()
-	includedirs ( glad_inc )
+	includedirs ( inc_dirs )
 end
 
 function linkGlad()

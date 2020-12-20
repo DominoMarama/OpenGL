@@ -32,12 +32,12 @@ project "OpenGL-Core"
 
 -- Push functions to workspace
 
-core_inc = path.getabsolute( "src" )
+local inc_dirs = path.getabsolute( "src" )
 
 project "*"
 
 function includeCore()
-	includedirs ( core_inc )
+	includedirs ( inc_dirs )
 	includeGLFW()
 	includeGlad()
 	includeImGui()

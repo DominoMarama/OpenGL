@@ -83,7 +83,7 @@ project "glfw"
 		runtime "Release"
 		optimize "on"
 
-glfw_inc = path.getabsolute( "glfw/include" )
+local inc_dirs = path.getabsolute( "glfw/include" )
 glfw_lib = "../bin/lib"
 
 project "*"
@@ -93,7 +93,7 @@ end
 -- Push functions to workspace
 
 function includeGLFW()
-	includedirs ( glfw_inc )
+	includedirs ( inc_dirs )
 end
 
 function linkGLFW()
