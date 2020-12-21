@@ -12,6 +12,7 @@ Makefile
 # qmake
 *.pro
 *.pro.user
+tools/qmake
 
 # Visual Studio
 .vs/

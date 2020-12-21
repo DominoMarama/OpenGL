@@ -1,0 +1,16 @@
+#!/bin/bash
+
+TARGET_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/../tools/qmake"
+
+if [ -d "${TARGET_DIR}" ]
+then
+	cd "${TARGET_DIR}"
+	git pull
+	cd - > /dev/null
+else
+	git clone --depth=1 https://github.com/Gaztin/premake-qmake.git "${TARGET_DIR}"
+fi
+
+echo ""
+echo "To generate qmake .pro files run 'tools/premake5 qmake' in the project root"
+

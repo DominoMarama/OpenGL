@@ -15,15 +15,15 @@ OpenGL-Core uses premake5 to configure the build and IDE environment. Platform s
 git clone --recursive https://github.com/DominoMarama/OpenGL
 ```
 
-### Windows Setup
+### Windows Visual Studio
 
-Run `scripts/Win-Premake.bat` and open `build/OpenGL.sln` in Visual Studio 2019.
+Run `tools/premake5 vs2019` and open `build/OpenGL.sln` in Visual Studio 2019.
 
 `OpenGL-Sandbox/src/SandboxLayer.cpp` contains the example OpenGL code that's running.
 
-### Linux Setup
+### Linux Makefile
 
-Run `./scripts/Linux-Premake.sh` to generate the make files in a build folder.
+Run `./tools/premake5 gmake2` to generate the make files in a build folder.
 
 Then `cd build` and `make` to build all targets in debug mode.
 
@@ -31,6 +31,26 @@ Use `make help` to see the various build options available. For example:
 
 `make config=release OpenGL-Sandbox` would build a release version of the sandbox project.
 
+### Linux Qmake Setup [Experimental]
+
+Install the qmake add on for premake by running `./scripts/Linux-UpdateQmake`
+
+Run `./tools/premake5 gmake2` to generate the pro files in a build folder.
+
+Open `build/OpenGL.pro` in QT Creator and before configuring the project, expand the kit details and edit each build folder to remove anything QT Creator added. The directory should end with `/OpenGL/build` and all build types have the same folder.
+
+You'll need to repeat this configuration process if `OpenGL.pro.user` is ever removed or if you open one of the child .pro files directly.
+
+After configuring the project you will need to add the following lines to each application.pro file (OpenGL-Sandbox.pro, OpenGL-Examples.pro) in the `LIBS +=` section:
+
+		"-ldl" \
+		"-lglfw" \
+
+This would need repeating anytime you regenerate the project files with premake.
+
+You should now be able to build, but you will still need to manually copy the `OpenGL-Examples/assets` folder to `build/bin/`_`BuildType`_ before running that project.
+
+Now you know why it's only experimental support for qmake at the moment.
 ### Mac Setup
 
 Mac is not currently supported.
