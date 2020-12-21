@@ -17,9 +17,9 @@ git clone --recursive https://github.com/DominoMarama/OpenGL
 
 ### Windows Visual Studio
 
-Run `tools/premake5 vs2019` and open `build/OpenGL.sln` in Visual Studio 2019.
+Run `tools\premake5 vs2019` and open `build\OpenGL.sln` in Visual Studio 2019.
 
-`OpenGL-Sandbox/src/SandboxLayer.cpp` contains the example OpenGL code that's running.
+`OpenGL-Sandbox\src\SandboxLayer.cpp` contains the example OpenGL code that's running.
 
 ### Linux Makefile
 
@@ -48,7 +48,7 @@ After configuring the project you will need to add the following lines to each a
 
 This would need repeating anytime you regenerate the project files with premake.
 
-You should now be able to build, but you will still need to manually copy the `OpenGL-Examples/assets` folder to `build/bin/`_`BuildType`_ before running that project.
+You should now be able to build, but you will still need to manually copy the `OpenGL-Examples/assets` folder to `build/BuildName/bin/` before running that project.
 
 Now you know why it's only experimental support for qmake at the moment.
 ### Mac Setup
