@@ -34,7 +34,8 @@ filter "system:linux"
 		"GLU",
 		"GL",
 		"X11",
-		"dl"
+		"dl",
+		"pthread"
 	}
 
 	defines

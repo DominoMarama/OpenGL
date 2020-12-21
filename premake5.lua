@@ -9,6 +9,7 @@ workspace "OpenGL"
 	architecture "x64"
 	startproject "OpenGL-Sandbox"
 	location "build"
+	buildname = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Configurations
 

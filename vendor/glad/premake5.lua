@@ -2,6 +2,8 @@ project "glad"
 	kind "StaticLib"
 	language "C"
 	staticruntime "on"
+	objdir ( path.join( "%{cfg.location}", buildname, "obj", "lib", "%{prj.name}" ) )
+	targetdir ( path.join( "%{cfg.location}", buildname, "bin", "lib" ) )
 
 	files
 	{
@@ -14,9 +16,6 @@ project "glad"
 	{
 		"include"
 	}
-
-	filter "system:linux"
-		links "dl"
 
 -- Push functions to workspace
 

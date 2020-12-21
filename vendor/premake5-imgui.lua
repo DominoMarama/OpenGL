@@ -2,6 +2,8 @@ project "imgui"
 	kind "StaticLib"
 	cppdialect "C++17"
 	staticruntime "On"
+	objdir ( path.join( "%{cfg.location}", buildname, "obj", "lib", "%{prj.name}" ) )
+	targetdir ( path.join( "%{cfg.location}", buildname, "bin", "lib" ) )
 
 	files
 	{

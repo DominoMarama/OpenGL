@@ -3,6 +3,9 @@ project "OpenGL-Core"
 	cppdialect "C++17"
 	staticruntime "on"
 
+	objdir ( path.join( "%{cfg.location}", buildname, "obj", "lib", "%{prj.name}" ) )
+	targetdir ( path.join( "%{cfg.location}", buildname, "bin", "lib" ) )
+
 	pchheader "glpch.h"
 	pchsource "src/glpch.cpp"
 
