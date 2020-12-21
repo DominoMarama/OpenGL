@@ -1,4 +1,6 @@
---require "vendor/premake-qmake/qmake"
+filter "action:qmake"
+	require "qmake"
+filter {}
 
 -- Workspace
 
@@ -43,7 +45,5 @@ include "OpenGL-Core"
 -- Projects
 
 include "OpenGL-Sandbox"
---dofile "premake5-filters.lua"
 
 include "OpenGL-Examples"
---dofile "premake5-filters.lua"
