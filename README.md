@@ -35,7 +35,7 @@ Use `make help` to see the various build options available. For example:
 
 Install the qmake add on for premake by running `./scripts/Linux-UpdateQmake`
 
-Run `./tools/premake5 gmake2` to generate the pro files in a build folder.
+Run `./tools/premake5 qmake` to generate the pro files in a build folder.
 
 Open `build/OpenGL.pro` in QT Creator and before configuring the project, expand the kit details and edit each build directory to remove anything QT Creator added. The directory should end with `*/OpenGL/build` and all build types have the same one.
 
